@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Will You Be My Girlfriend?</title>
+  <style>
+    body {
+      background-color: #ffccff;
+      text-align: center;
+      font-family: 'Plush', cursive, sans-serif;
+      overflow: hidden;
+    }
+
+    h1 {
+      color: red;
+      font-size: 3em;
+      margin-top: 50px;
+      animation: heartbeat 1s infinite alternate;
+    }
+
+    @keyframes heartbeat {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.1); }
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 3em;
+      color: pink;
+      animation: floating 5s infinite;
+    }
+
+    .heart:nth-child(odd) {
+      animation-duration: 6s;
+      animation-delay: 2s;
+    }
+
+    .heart:nth-child(even) {
+      animation-duration: 4s;
+      animation-delay: 1s;
+    }
+
+    @keyframes floating {
+      0% { transform: translateY(0); opacity: 1; }
+      50% { transform: translateY(-30px); opacity: 0.7; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    .message {
+      font-size: 2em;
+      color: #ff3399;
+      margin-top: 20px;
+      animation: popIn 3s infinite;
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0); opacity: 0; }
+      50% { transform: scale(1.2); opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .question {
+      font-size: 2em;
+      color: #ff3399;
+      margin-top: 50px;
+    }
+
+    .no-button, .yes-button {
+      font-size: 1.5em;
+      padding: 20px 40px;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 25px;
+      margin: 20px;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .no-button:hover, .yes-button:hover {
+      background-color: #ff3385;
+    }
+
+    .no-button {
+      position: absolute;
+      left: 65%; 
+    }
+
+    .yes-button {
+      background-color: #ff4d94;
+      position: absolute;
+      left: 22%; 
+    }
+
+  
+    .first-page {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #ffccff;
+      opacity: 1;
+      transition: opacity 1s ease-out;
+    }
+
+    .first-page h1 {
+      font-size: 2em;
+      color: #ff3399;
+    }
+
+    .continue-button {
+      font-size: 1.5em;
+      padding: 20px 40px;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 25px;
+      margin-top: 20px;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .continue-button:hover {
+      background-color: #ff3385;
+    }
+
+   
+    #mainPage {
+      display: none;
+      opacity: 0;
+      transition: opacity 1s ease-in;
+    }
+
+    
+    #finalPage {
+      display: none;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 1s ease-in;
+      padding-top: 50px;
+    }
+
+    #finalPage h1 {
+      color: #ff3399;
+      font-size: 2.5em;
+      animation: popIn 2s ease-in-out;
+    }
+
+    .heart-final {
+      font-size: 4em;
+      color: pink;
+      animation: floating 5s infinite;
+    }
+
+  </style>
+</head>
+<body>
+ 
+  <div class="first-page" id="firstPage">
+    <h1>Bossing!!! i have smth to tell, ge baka?</h1>
+    <button class="continue-button" id="continueButton">Continue</button>
+  </div>
+
+  <div id="mainPage">
+    <h1>Miss mo na ba ako?</h1>
+
+    <div class="heart" style="top: 100px; left: 100px;">♥</div>
+    <div class="heart" style="top: 200px; left: 300px;">♥</div>
+    <div class="heart" style="top: 400px; left: 600px;">♥</div>
+    <div class="heart" style="top: 150px; left: 500px;">♥</div>
+    <div class="heart" style="top: 350px; left: 50px;">♥</div>
+
+    <p class="message">pretty kaayo ka (tuk-on) :>></p>
+
+    <div class="question">
+      <p>mag "YES" kana kasi</p>
+      <button class="no-button" id="noButton">No</button>
+      <button class="yes-button" id="yesButton">Yes</button>
+    </div>
+  </div>
+
+  <div id="finalPage">
+    <h1>'Yun oh, iloveyouuu mwahhh</h1>
+    <div class="heart-final" style="top: 50px; left: 50px;">♥</div>
+    <div class="heart-final" style="top: 100px; left: 200px;">♥</div>
+    <div class="heart-final" style="top: 300px; left: 500px;">♥</div>
+    <div class="heart-final" style="top: 400px; left: 700px;">♥</div>
+    <div class="heart-final" style="top: 200px; left: 800px;">♥</div>
+  </div>
+
+  <script>
+    const continueButton = document.getElementById('continueButton');
+    const firstPage = document.getElementById('firstPage');
+    const mainPage = document.getElementById('mainPage');
+    const finalPage = document.getElementById('finalPage');
+
+    continueButton.addEventListener('click', function() {
+      firstPage.style.opacity = '0';  
+      setTimeout(function() {
+        firstPage.style.display = 'none';  
+        mainPage.style.display = 'block';  
+        setTimeout(function() {
+          mainPage.style.opacity = '1';  
+        }, 100); 
+      }, 1000); 
+    });
+
+    const noButton = document.getElementById('noButton');
+    const yesButton = document.getElementById('yesButton');
+
+    let moveNoInterval;
+
+    noButton.addEventListener('click', function() {
+      moveNoButton();
+      if (!moveNoInterval) {
+        moveNoInterval = setInterval(moveNoButton, 500); 
+      }
+    });
+
+    yesButton.addEventListener('click', function() {
+      noButton.style.display = 'none'; 
+
+      mainPage.style.opacity = '0';  
+      setTimeout(function() {
+        mainPage.style.display = 'none';  
+        finalPage.style.display = 'block'; 
+        setTimeout(function() {
+          finalPage.style.opacity = '1';  
+        }, 100);
+      }, 1000);  
+    });
+
+    function moveNoButton() {
+      let randomX = Math.random() * (window.innerWidth - noButton.offsetWidth);
+      let randomY = Math.random() * (window.innerHeight - noButton.offsetHeight);
+      noButton.style.left = randomX + 'px';
+      noButton.style.top = randomY + 'px';
+    }
+  </script>
+</body>
+</html>
